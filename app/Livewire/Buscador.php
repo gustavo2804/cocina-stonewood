@@ -17,12 +17,12 @@ class Buscador extends Component
     public function render()
         {
             $listadoParaSumar = [];
-            
+
             if($this->buscar != '')
             {
                 $listadoParaSumar = Ordenes::where('usuario','LIKE',"$this->buscar%")->get();
             }
-            $listados = Ordenes::where('usuario','LIKE',"$this->buscar%")
+            $listados = Ordenes::where('usuario','LIKE',"$this->buscar%")->whereNull('descontado')
             ->paginate(10);
 
             $this->dispatch('listadoOrdenes',$listadoParaSumar);

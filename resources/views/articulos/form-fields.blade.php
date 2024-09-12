@@ -30,8 +30,6 @@
         <br>
         <label>
             Imagen del Articulo:
-            <div>
-                <img src="{{$articulo->imagen}}" alt="{{$articulo->nombre_articulo}}" class="img-fluid" width="120px">
-            </div>
+            <input type="file" name="imagen"  value="{{old('imagen',$articulo->imagen)}}">
         </label>
         <br>
