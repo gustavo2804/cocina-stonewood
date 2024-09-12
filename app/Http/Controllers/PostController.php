@@ -28,6 +28,7 @@ class PostController extends Controller {
 
     public function create()
     {
+
         return view('articulos.create',['articulo' => new Colmado]);
     }
 
@@ -40,8 +41,19 @@ class PostController extends Controller {
     //         'precio_venta' => ['required','integer','min:1']
 
     //     ]);
+    
+   
 
         Colmado::create($request->validated());
+
+        if($request->hasFile('imagen'))
+    {
+        $file = $request->file('imagen');
+        $urlPath = 'image';
+        $filename = time().'-'.$file->getClientOriginalName();
+        $imageUpload = $request->file('imagen')->move($urlPath,$filename);
+        Colmado::insert(['imagen'=>$urlPath.'/'.$filename]);
+    }
 
         // $colmado->nombre_articulo = $request->input('nombre_articulo');
         // $colmado->precio = $request->input('precio');
@@ -70,7 +82,14 @@ class PostController extends Controller {
         //     'precio_venta' => ['required','integer','min:1']
 
         // ]);
-
+        if($request->hasFile('imagen'))
+        {
+            $file = $request->file('imagen');
+            $urlPath = 'image';
+            $filename = time().'-'.$file->getClientOriginalName();
+            $imageUpload = $request->file('imagen')->move($urlPath,$filename);
+            $articulo->imagen = $urlPath.'/'.$filename;
+        }
         $articulo->update($request->validated());
 
         // $articulo->nombre_articulo = $request->input('nombre_articulo');

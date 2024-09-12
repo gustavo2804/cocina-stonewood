@@ -27,3 +27,11 @@
                 <div style="color:red">{{$message}} </div>
             @enderror
         </label>
+        <br>
+        <label>
+            Imagen del Articulo:
+            <div>
+                <img src="{{$articulo->imagen}}" alt="{{$articulo->nombre_articulo}}" class="img-fluid" width="120px">
+            </div>
+        </label>
+        <br>

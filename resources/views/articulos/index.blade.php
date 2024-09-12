@@ -30,10 +30,10 @@
                             <a href="{{route('articulos.edit',$post)}}" class="btn btn-info">Editar</a>    
                         </div>
                         <div class="col">
-                            <form action="{{ route('articulos.destroy',$post)}}" method="POST" >
+                            <form action="{{ route('articulos.destroy',$post)}}" class="elimnar-articulo" name="prueba" method="POST" >
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger" >Delete</button>
                             </form>
                         </div>
                     </div>
@@ -45,6 +45,18 @@
         </table>   
             {{-- paginacion --}}
             {{$posts->links()}}
+
+           
             
     </div>
+    @section('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+     
+            
+    </script>
+    
+    @endsection
+      
+
     </x-layout>    

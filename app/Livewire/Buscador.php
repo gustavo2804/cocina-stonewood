@@ -4,10 +4,11 @@ namespace App\Livewire;
 
 use App\Models\Ordenes;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Buscador extends Component
 {   
-   
+  use WithPagination;
     public $buscar = '';
 
     public $listado;
@@ -15,11 +16,16 @@ class Buscador extends Component
    
     public function render()
         {
-            $listados  = Ordenes::where('usuario','LIKE',"$this->buscar%")
-            ->paginate(10);
+            $listadoParaSumar = [];
             
-           
-  
-        return view('livewire.buscador', compact('listados'));
+            if($this->buscar != '')
+            {
+                $listadoParaSumar = Ordenes::where('usuario','LIKE',"$this->buscar%")->get();
+            }
+            $listados = Ordenes::where('usuario','LIKE',"$this->buscar%")
+            ->paginate(10);
+
+            $this->dispatch('listadoOrdenes',$listadoParaSumar);
+        return view('livewire.buscador', ['listados'=>$listados]);
     }
 }

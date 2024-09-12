@@ -1,7 +1,7 @@
 <x-layout meta-title="Formulario Edicion">
 
     <h1>Formulario de Edicion</h1>
-    <form action="{{ route('articulos.update',$articulo)}}" method="POST">
+    <form action="{{ route('articulos.update',$articulo)}}" method="POST" enctype="multipart/form-data">
         @csrf @method('PATCH')
         <br>
         @include('articulos.form-fields');

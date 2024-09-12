@@ -23,8 +23,8 @@ class SaveArticuloRequest extends FormRequest
     {
         return [
             'nombre_articulo' => ['required'],
-            'precio' => ['required','integer','min:1'],
-            'precio_venta' => ['required','integer','min:1']
+            'precio' => ['required','numeric','min:1'],
+            'precio_venta' => ['required','numeric','min:1'],
         ];
     }
 }

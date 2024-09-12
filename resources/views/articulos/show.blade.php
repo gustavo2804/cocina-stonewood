@@ -6,6 +6,8 @@
 
 <p>{{"Precio Venta: ".$articulo->precio_venta}}</p>
 
+
+
 <a href="{{ route('articulos.index')}}">Back</a>
 
 </x-layout>

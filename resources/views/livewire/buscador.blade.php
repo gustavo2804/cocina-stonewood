@@ -27,6 +27,12 @@
                    
                     @endforeach
                 </table>
+                <br>
+                <div>
+                    <h5>Total de pedidos en Pesos: </h5>
+                    @livewire('SumadorTotales')
+                </div>
+                <br>
                 {{$listados->links()}}
          </div>    
 

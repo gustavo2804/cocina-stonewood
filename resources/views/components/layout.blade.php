@@ -26,5 +26,7 @@
         
     @endisset
     @livewireScripts
+   
+    @yield('js')
 </body>
 </html>

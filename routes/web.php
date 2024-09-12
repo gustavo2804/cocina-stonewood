@@ -3,12 +3,14 @@
 use App\Http\Controllers\DetallesOrdenController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\usuarioController;
 use App\Livewire\Buscador;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/',[DetallesOrdenController::class,'index'])->name('home');
+Route::post('/usuario',[usuarioController::class,'buscarUsuario'])->name('usuario');
 Route::Post('/create',[DetallesOrdenController::class,'store'])->name('store');
 Route::get('/contacto',Buscador::class)->name('contact');
 

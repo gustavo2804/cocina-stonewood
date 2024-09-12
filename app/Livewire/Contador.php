@@ -35,7 +35,7 @@ class Contador extends Component
             $this->count++;
         }
 
-        
+        $this->dispatch('articuloAgregado',$this->precio); 
     }
 
     public function disminuir()
@@ -43,6 +43,8 @@ class Contador extends Component
         if($this->count > 0)
         {
             $this->count--;
+
+            $this->dispatch('articuloEliminado',$this->precio);
         } 
     }
 

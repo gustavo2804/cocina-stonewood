@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Colmado;
 use App\Models\DetallesOrden;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Validator;
 
 class DetallesOrdenController extends Controller
 {   
@@ -33,25 +33,46 @@ class DetallesOrdenController extends Controller
 
     public function store(Request $requests)
     {
-        // $prueba = [];
-        //revisar validacion despues
-        // $validator = Validator::make($requests['articulos'],
-        // [
-        //     'articulo_cantidad' => 'required',
-        //     'articulo_precio' => 'required',
-        //      'articulo_id'      => 'required'   
-        // ])->validate();
+        // dd($requests['articulos']);
+        //para ejemplo
+        $validar = Validator::make($requests['articulos'],
+        [
+            '*.articulo_precio' => 'required',
+             '*.articulo_id'      => 'required',
+             '*.articulo_cantidad' => ['required','integer','min:1'], 
+        ]);
 
-        // $validos = $validator; 
-        
-        $usuario = $requests->usuario;
+        $errores = $validar->errors();
+
+        $validUsers = [];
+        foreach ($requests['articulos'] as $index => $user) {
+            $userErrors = $errores->get($index . '.*');
+            if (empty($userErrors)) {
+                $validUsers[] = $user;
+            }
+        }
+
+      
+
+        if (empty($validUsers)) {
+            return redirect('/')
+                        ->withErrors($validar)
+                        ->withInput();
+        }
+
+        $validos = $validUsers;
+
+
+       $usuarioValido =  $requests->validate(['usuario'=>['required','min:11','exists:usuarios,cedula']]);
+      
+        $usuario = $usuarioValido['usuario'];
         $numeroOrden =  $this->generarNumeroOrden($usuario);
         
         $ordenCreada = false;
 
-        foreach($requests['articulos'] as $request)
+        foreach($validos as $request)
         {
-            if($request['articulo_cantidad'] > 0 )
+            if($validos > 0 )
             {
                 
                 
