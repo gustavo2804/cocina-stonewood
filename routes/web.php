@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[DetallesOrdenController::class,'index'])->name('home');
 Route::post('/usuario',[usuarioController::class,'buscarUsuario'])->name('usuario');
 Route::Post('/create',[DetallesOrdenController::class,'store'])->name('store');
-Route::get('/contacto',Buscador::class)->name('contact');
+Route::get('/contacto',Buscador::class)->middleware('auth')->name('contact');
 
 
 
