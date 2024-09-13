@@ -30,6 +30,6 @@
         <br>
         <label>
             Imagen del Articulo:
-            <input type="file" name="imagen"  value="{{old('imagen',$articulo->imagen)}}">
+            <input type="file" name="imagen" >
         </label>
         <br>

@@ -32,6 +32,13 @@
                     <h5>Total de pedidos en Pesos: </h5>
                     @livewire('SumadorTotales')
                 </div>
+                <div>
+                    <form wire:submit="descontado">
+                        <input type="text" wire:model="cedula">
+                     
+                        <button type="submit" class="btn btn-primary">Descontar</button>
+                    </form>
+                </div>
                 <br>
                 {{$listados->links()}}
          </div>    

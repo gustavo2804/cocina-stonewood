@@ -32,7 +32,7 @@ class PostController extends Controller {
         return view('articulos.create',['articulo' => new Colmado]);
     }
 
-    public function store(SaveArticuloRequest $request )
+    public function store(SaveArticuloRequest $request)
     {
     //    $validated =  $request->validate([
 
