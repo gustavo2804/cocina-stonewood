@@ -55,6 +55,8 @@ class PostController extends Controller {
         Colmado::insert(['imagen'=>$urlPath.'/'.$filename]);
     }
 
+    
+
         // $colmado->nombre_articulo = $request->input('nombre_articulo');
         // $colmado->precio = $request->input('precio');
         // $colmado->precio_venta = $request->input('precio_venta');

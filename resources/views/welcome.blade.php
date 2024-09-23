@@ -1,6 +1,8 @@
 <x-layout>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="container">
+       
+      
         <h1>COLMADO LA CONFIANZA</h1>
         @if ($errors->has('*.articulo_cantidad'))
         <div style="color:red">{{'Debe Seleccionar al menos un articulo.'}} </div>

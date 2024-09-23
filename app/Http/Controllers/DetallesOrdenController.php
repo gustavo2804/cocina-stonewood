@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 class DetallesOrdenController extends Controller
 {   
     public $total = 0;
+
+    public $totalSumado = 0;
     public function index()
     {
         $articulosDisponibles  = Colmado::all();
@@ -31,6 +33,17 @@ class DetallesOrdenController extends Controller
         $this->total += $cantidad*$precio;
     }
 
+    public function totalSumadoOrdenes($cedula)
+    {
+        $ordenes = Ordenes::where('usuario','LIKE',"$cedula%")->whereNull('descontado')->get();
+        $totalOrdenes = 0;
+        foreach($ordenes as $orden)
+        {
+            $totalOrdenes += $orden->total; 
+        }
+
+        $this->totalSumado =  $totalOrdenes;
+    }
     public function store(Request $requests)
     {
         // dd($requests['articulos']);
@@ -99,16 +112,17 @@ class DetallesOrdenController extends Controller
                 }
                 }   
         }               
-                        if($ordenCreada)
-                        {
-                            $orden = new Ordenes;
-                            $orden->numero_orden = $numeroOrden;
-                            $orden->usuario      = $usuario;
-                            $orden->total        =  $this->total;
-                            $orden->save();
-                        }
+        if($ordenCreada)
+        {
+            $orden = new Ordenes;
+            $orden->numero_orden = $numeroOrden;
+            $orden->usuario      = $usuario;
+            $orden->total        =  $this->total;
+            $orden->save();
+        }
+       
+        
 
-            
          return to_route('home')->with('status','Articulos comprados Correctamente');
         
         ;
